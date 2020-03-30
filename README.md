@@ -8,7 +8,7 @@ En la siguiente figura se muestra el diseño del microservicio actual:
 ## Prerrequisitos
 - Clonar el repositorio:
    ```shell
-   $ git clone https://gitlab.com/tareas-arquitectura-de-software-curso/microservicios-2.git
+   $ git clone https://gitlab.com/tareas-arquitectura-de-software-curso/2-microservicios.git
    $ cd microservicios-2
    ```
 
