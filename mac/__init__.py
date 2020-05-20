@@ -37,6 +37,15 @@ def crud():
         sqlite_conn.commit()
         return render_template('hola.html',results = (result))
 
+@app.route('/netflix/original-content/<int:id>', methods=['GET', 'PATCH'])
+def get_sentence_id(id):
+    sqlite_conn = get_database_connection('./mac/original_content.db')
+    sqlite_cursor = sqlite_conn.cursor()
+    sqlite_cursor.execute("SELECT * FROM original_content WHERE id ="+str(id)+"")
+    data = sqlite_cursor.fetchall()
+    result = convert_cursor_to_json(data)
+    return render_template('hola.html', results = (result))
+
 def get_sentence(sqlite_cursor, genero, type, popularity):
     if genero != None:
         sqlite_cursor.execute("SELECT * FROM original_content WHERE genre ="+genero+"")
