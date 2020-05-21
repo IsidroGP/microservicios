@@ -37,9 +37,11 @@ def crud():
         sqlite_conn.commit()
         return render_template('hola.html',results = (result))
 
-@app.route('/netflix/original-content/<int:id>', methods=['GET', 'PATCH'])
+@app.route('/netflix/original-content/<int:id>', methods=['GET'])
 def get_sentence_id(id):
+    print("hOLIA----------------------------2")
     if request.method == 'GET':
+        print("get")
         sqlite_conn = get_database_connection('./mac/original_content.db')
         sqlite_cursor = sqlite_conn.cursor()
         sqlite_cursor.execute("SELECT * FROM original_content WHERE id ="+str(id)+"")
@@ -47,11 +49,16 @@ def get_sentence_id(id):
         result = convert_cursor_to_json(data)
         return render_template('hola2.html', results = (result), datas = (result))
 
-@app.route('/netflix/original-content/<collection>', methods=['GET', 'PATCH'])
-def save(colection):
-        respuesta = request.get_json()
-        print(respuesta)
-        return render_template('hola.html')
+
+@app.route('/netflix/original-content/<int:id>/', methods=['PATCH'])
+def actualiza():
+    print("hOLIA----------------------------")
+    if request.method == 'PATCH':
+        print("patch")
+        title = request.form
+        print(title)
+        return "HOLA"
+
 
 def get_sentence(sqlite_cursor, genero, type, popularity):
     if genero != None:

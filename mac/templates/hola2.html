@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <title>Holaa</title>
 <body>
@@ -35,7 +36,8 @@ Hola Mundo
 			document.getElementById(esto).style.display = vista;}
 	</script>
 	<div id="edit" style="display: none;">
-		<form action = "http://localhost:8084/netflix/original-content/" method = "PATCH">
+		<form action = "" method = "PATCH">
+			<input type="hidden" name="_method" value="POST"/>
 			{% for data in datas%}
 				<p>ID <input type = "text" name = "id" value={{data.id}} /></p>
 				<p>Title <input type = "text" name = "title" value={{data.name}} /></p>
