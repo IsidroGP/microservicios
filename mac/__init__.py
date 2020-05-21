@@ -1,10 +1,10 @@
 import sqlite3
 import json
-import json2table
 import requests
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
+app.config['DEBUG'] = True
 
 @app.route('/netflix/original-content', methods=['GET', 'POST'])
 def crud():
@@ -37,9 +37,8 @@ def crud():
         sqlite_conn.commit()
         return render_template('hola.html',results = (result))
 
-@app.route('/netflix/original-content/<int:id>', methods=['GET'])
+@app.route('/netflix/original-content/<int:id>', methods=['GET','PATCH'])
 def get_sentence_id(id):
-    print("hOLIA----------------------------2")
     if request.method == 'GET':
         print("get")
         sqlite_conn = get_database_connection('./mac/original_content.db')
@@ -48,17 +47,12 @@ def get_sentence_id(id):
         data = sqlite_cursor.fetchall()
         result = convert_cursor_to_json(data)
         return render_template('hola2.html', results = (result), datas = (result))
-
-
-@app.route('/netflix/original-content/<int:id>/', methods=['PATCH'])
-def actualiza():
-    print("hOLIA----------------------------")
     if request.method == 'PATCH':
         print("patch")
-        title = request.form
-        print(title)
+        json_body = request.get_json()
+        print(json_body)
+        print("dsadasdasd")
         return "HOLA"
-
 
 def get_sentence(sqlite_cursor, genero, type, popularity):
     if genero != None:
