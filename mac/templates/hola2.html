@@ -1,0 +1,50 @@
+<html>
+<title>Holaa</title>
+<body>
+Hola Mundo
+<table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>TYPE</th>
+            <th>GENRE</th>
+            <th>IMBD RATING</th>
+        </tr>
+        </thead>
+        <tbody>
+            {%for data in results%}
+            <tr>
+		<td>{{data.id}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.type}}</td>
+                <td>{{data.genre}}</td>
+                <td>{{data.imdb_rating}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+	<a href="#" onclick="cambiar('edit'); return false;">Editar</a>
+	<script>
+		function cambiar(esto){
+			vista=document.getElementById(esto).style.display;
+			if (vista=='none')
+				vista='block';
+			else
+				vista='none';
+			document.getElementById(esto).style.display = vista;}
+	</script>
+	<div id="edit" style="display: none;">
+		<form action = "http://localhost:8084/netflix/original-content/" method = "PATCH">
+			{% for data in datas%}
+				<p>ID <input type = "text" name = "id" value={{data.id}} /></p>
+				<p>Title <input type = "text" name = "title" value={{data.name}} /></p>
+				<p>Type <input type = "text" name = "type" value={{data.type}} /></p>
+				<p>Genre <input type = "text" name = "genre" value={{data.genre}} /></p>
+				<p>IMBD RG <input type = "text" name = "imbd" value={{data.imdb_rating}} /></p>
+			{%endfor%}
+			<p><input type = "submit" value = "save" /></p>
+		</form>
+	</div>
+</body>
+</html>
