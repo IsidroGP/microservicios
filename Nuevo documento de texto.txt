@@ -1,1 +1,39 @@
-curl -H "Content-Type: application/json" -d "{\"name\":\The actual real name\",\"genre\":\"The actual real genre\"}" -X PATCH http://localhost:8084/netflix/original-content/1
+curl -H "Content-Type: application/json" -d "{\"Title\":\"The actual real name\",\"Genre\":\"The actual real genre\",\"Type\":\"Yolo\",\"imdbRag\":\"1.1\"}" -X PATCH http://localhost:8084/netflix/original-content/1
+
+
+<a href="#" onclick="cambiar('edit'); return false;">Editar</a>
+	<script>
+		function cambiar(esto){
+			vista=document.getElementById(esto).style.display;
+			if (vista=='none')
+				vista='block';
+			else
+				vista='none';
+			document.getElementById(esto).style.display = vista;}
+	</script>
+	<div id="edit" style="display: none;">
+		<form action = "" method = "PATCH">
+			<input type="hidden" name="_method" value="POST"/>
+			{% for data in datas%}
+				<p>ID <input type = "text" name = "id" value={{data.id}} /></p>
+				<p>Title <input type = "text" name = "title" value={{data.name}} /></p>
+				<p>Type <input type = "text" name = "type" value={{data.type}} /></p>
+				<p>Genre <input type = "text" name = "genre" value={{data.genre}} /></p>
+				<p>IMBD RG <input type = "text" name = "imbd" value={{data.imdb_rating}} /></p>
+			{%endfor%}
+			<p><input type = "submit" value = "save" /></p>
+		</form>
+	</div>
+
+
+    sqlite_cursor.execute("UPDATE original_content SET name = ?, type = ? WHERE id = ?",(title,type,str(id)))
+    elif(title!=None and type == None and genre != None and imdb_rtg == None):
+        sqlite_cursor.execute("UPDATE original_content SET name = ?, genre = ? WHERE id = ?",(title,genre,str(id)))
+    elif(title!=None and type == None and genre == None and imdb_rtg != None):
+        sqlite_cursor.execute("UPDATE original_content SET name = ?, imdb_rating = ? WHERE id = ?",(title,imdb_rtg,str(id)))
+    elif(title==None and type != None and genre != None and imdb_rtg == None):
+        sqlite_cursor.execute("UPDATE original_content SET type = ?, genre = ? WHERE id = ?",(type,genre,str(id)))
+    elif(title==None and type != None and genre == None and imdb_rtg != None):
+        sqlite_cursor.execute("UPDATE original_content SET type = ?, imdb_rating = ? WHERE id = ?",(type,imdb_rtg,str(id)))
+    elif(title==None and type == None and genre != None and imdb_rtg != None):
+        sqlite_cursor.execute("UPDATE original_content SET genre = ?, imdb_rating = ? WHERE id = ?",(genre,imdb_rtg,str(id)))

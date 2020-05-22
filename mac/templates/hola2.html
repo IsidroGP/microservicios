@@ -25,28 +25,5 @@ Hola Mundo
             {%endfor%}
         </tbody>
     </table>
-	<a href="#" onclick="cambiar('edit'); return false;">Editar</a>
-	<script>
-		function cambiar(esto){
-			vista=document.getElementById(esto).style.display;
-			if (vista=='none')
-				vista='block';
-			else
-				vista='none';
-			document.getElementById(esto).style.display = vista;}
-	</script>
-	<div id="edit" style="display: none;">
-		<form action = "" method = "PATCH">
-			<input type="hidden" name="_method" value="POST"/>
-			{% for data in datas%}
-				<p>ID <input type = "text" name = "id" value={{data.id}} /></p>
-				<p>Title <input type = "text" name = "title" value={{data.name}} /></p>
-				<p>Type <input type = "text" name = "type" value={{data.type}} /></p>
-				<p>Genre <input type = "text" name = "genre" value={{data.genre}} /></p>
-				<p>IMBD RG <input type = "text" name = "imbd" value={{data.imdb_rating}} /></p>
-			{%endfor%}
-			<p><input type = "submit" value = "save" /></p>
-		</form>
-	</div>
 </body>
 </html>
