@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<title>Holaa</title>
+<body>
+Hola Mundo
+<table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>TYPE</th>
+            <th>GENRE</th>
+            <th>IMBD RATING</th>
+        </tr>
+        </thead>
+        <tbody>
+            {%for data in results%}
+            <tr>
+		<td>{{data.id}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.type}}</td>
+                <td>{{data.genre}}</td>
+                <td>{{data.imdb_rating}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</body>
+</html>
